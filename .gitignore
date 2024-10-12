@@ -2,7 +2,7 @@
 /.htaccess
 /bitrix
 /upload
-/local/php_interface/constants.php
+/vendor
 /*.txt
 /*.html
 ~*.php

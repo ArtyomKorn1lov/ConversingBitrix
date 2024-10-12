@@ -1,0 +1,15 @@
+{
+    "extra": {
+        "installer-paths": {
+            "bitrix/modules/{$name}/": ["type:bitrix-module"]
+        }
+    },
+    "require": {
+        "andreyryabin/sprint.migration": "dev-master"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
