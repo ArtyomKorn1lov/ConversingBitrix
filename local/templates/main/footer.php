@@ -238,12 +238,25 @@
 				}
 			})).animate();
 		});
-
-        BX.ajax.runAction('module:conversing.Visit.getMessage', {})
-            .then((response) => {
-                console.log(response);
-            });
     });
+</script>
+
+<?php
+$pageParams = [
+    "params" => [
+        "title" => $APPLICATION->GetTitle(),
+        "description" => $APPLICATION->GetProperty("description"),
+        "keywords" => $APPLICATION->GetProperty("keywords"),
+        "robots" => $APPLICATION->GetProperty("robots"),
+        "curPageURL" => $APPLICATION->GetCurPage(),
+        'curPage' => $APPLICATION->GetCurPage(false),
+    ],
+    "curPage" => $APPLICATION->GetCurPage(false)
+];
+$arJSParams = Bitrix\Main\Web\Json::encode($pageParams);
+?>
+<script>
+    const pageParams = <?=$arJSParams?>;
 </script>
 
 </body>
