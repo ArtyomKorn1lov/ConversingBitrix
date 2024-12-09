@@ -242,13 +242,15 @@
 </script>
 
 <?php
+Bitrix\Main\Loader::includeModule('module.conversing');
+use Conversing\Helpers\Data;
 $pageParams = [
     "params" => [
         "title" => $APPLICATION->GetTitle(),
         "description" => $APPLICATION->GetProperty("description"),
-        "keywords" => $APPLICATION->GetProperty("keywords"),
-        "robots" => $APPLICATION->GetProperty("robots"),
-        "curPageURL" => $APPLICATION->GetCurPage(),
+        "keywords" => Data::getArrayFromMultipleMeta($APPLICATION->GetProperty("keywords")),
+        "robots" => Data::getArrayFromMultipleMeta($APPLICATION->GetProperty("robots")),
+        "curPageURL" => $current_link = $APPLICATION->GetCurUri(),
         'curPage' => $APPLICATION->GetCurPage(false),
     ],
     "curPage" => $APPLICATION->GetCurPage(false)

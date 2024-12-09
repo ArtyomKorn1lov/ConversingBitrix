@@ -34,6 +34,14 @@ class module_conversing extends CModule
     public function doInstall()
     {
         ModuleManager::registerModule($this->MODULE_ID);
+        $folderConvesingLogsPath = $_SERVER["DOCUMENT_ROOT"] . "/conversing-logs/";
+        $folderConvesingOutputPath = $_SERVER["DOCUMENT_ROOT"] . "/conversing-outputs/";
+        if (!file_exists($folderConvesingLogsPath)) {
+            mkdir($folderConvesingLogsPath, 0777, true);
+        }
+        if (!file_exists($folderConvesingOutputPath)) {
+            mkdir($folderConvesingOutputPath, 0777, true);
+        }
     }
     //вызываем метод удаления таблицы и удаляем модуль из регистра
     public function doUninstall()
