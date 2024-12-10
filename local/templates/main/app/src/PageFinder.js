@@ -1,7 +1,9 @@
 export default class PageFinder {
     constructor() {
         this.headers = {};
+        this.picturesData = [];
         this.setHeaders();
+        this.setImgParams();
     }
 
     setHeaders() {
@@ -17,9 +19,22 @@ export default class PageFinder {
         });
     }
 
+    setImgParams() {
+        const imgDOM = document.querySelectorAll("img");
+        imgDOM.forEach((item) => {
+            let imgData = {};
+            const alt = item.getAttribute('alt');
+            (!!alt) && (imgData.alt = alt);
+            const title = item.getAttribute('title');
+            (!!title) && (imgData.title = title);
+            (!!imgData.alt || !!imgData.title) && (this.picturesData.push(imgData));
+        });
+    }
+
     getPageValue() {
         return {
-            headers: this.headers
+            headers: this.headers,
+            pictures: this.picturesData
         }
     }
 }
