@@ -1,6 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Интернет-магазин \"Одежда\"");
+$APPLICATION->SetPageProperty("second-name","Тренды сезона");
+$APPLICATION->SetPageProperty("type","index");
 ?>
 
 <?

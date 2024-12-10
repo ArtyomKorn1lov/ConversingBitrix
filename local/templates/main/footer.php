@@ -245,14 +245,7 @@
 Bitrix\Main\Loader::includeModule('module.conversing');
 use Conversing\Helpers\Data;
 $pageParams = [
-    "params" => [
-        "title" => $APPLICATION->GetTitle(),
-        "description" => $APPLICATION->GetProperty("description"),
-        "keywords" => Data::getArrayFromMultipleMeta($APPLICATION->GetProperty("keywords")),
-        "robots" => Data::getArrayFromMultipleMeta($APPLICATION->GetProperty("robots")),
-        "curPageURL" => $current_link = $APPLICATION->GetCurUri(),
-        'curPage' => $APPLICATION->GetCurPage(false),
-    ],
+    "params" => Data::getPagesMetaData($APPLICATION),
     "curPage" => $APPLICATION->GetCurPage(false)
 ];
 $arJSParams = Bitrix\Main\Web\Json::encode($pageParams);

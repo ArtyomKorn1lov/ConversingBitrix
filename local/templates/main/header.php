@@ -21,6 +21,8 @@ $curPage = $APPLICATION->GetCurPage(true);
 	<link rel="shortcut icon" type="image/x-icon" href="<?=SITE_DIR?>favicon.ico" />
     <script type="module" src="<?=SITE_TEMPLATE_PATH?>/app/dist/index.bundle.js"></script>
 	<?php $APPLICATION->ShowHead(); ?>
+    <?php $APPLICATION->ShowMeta("second-name");?>
+    <?php $APPLICATION->ShowMeta("type");?>
 </head>
 <body class="bx-background-image bx-theme-<?=$theme?>" <?$APPLICATION->ShowProperty("backgroundImage");?>>
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>

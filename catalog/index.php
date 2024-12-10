@@ -1,6 +1,8 @@
 <?
 define("HIDE_SIDEBAR", true);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("application-name","Лучший ассортимент товаров");
+$APPLICATION->SetPageProperty("type","catalog");
 ?>
 <?$APPLICATION->IncludeComponent("bitrix:catalog", "bootstrap_v4", array(
 	"IBLOCK_TYPE" => "catalog",

@@ -1,12 +1,18 @@
-import TagFinder from "./TagFinder";
+import PageFinder from "./PageFinder";
 import {visitPage} from "./api";
 
 BX.ready(() => {
-    const tagFinder = new TagFinder();
-    console.log('pageParams', pageParams);
+    const pageFinder = new PageFinder();
+    const finderData = pageFinder.getPageValue();
+    let finalPageParams = pageParams;
+    finalPageParams.params = {
+        ...finalPageParams.params,
+        ...finderData
+    }
+    console.log('finalPageParams', finalPageParams);
     visitPage({
         data: {
-            params: pageParams
+            params: finalPageParams
         }
     })
         .then((response) => {

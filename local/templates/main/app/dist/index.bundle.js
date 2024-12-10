@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/TagFinder.js":
-/*!**************************!*\
-  !*** ./src/TagFinder.js ***!
-  \**************************/
+/***/ "./src/PageFinder.js":
+/*!***************************!*\
+  !*** ./src/PageFinder.js ***!
+  \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TagFinder)\n/* harmony export */ });\nclass TagFinder {\r\n\r\n    constructor() {\r\n        console.log('Класс инициализирован');\r\n    }\r\n}\n\n//# sourceURL=webpack://convesing/./src/TagFinder.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ PageFinder)\n/* harmony export */ });\nclass PageFinder {\r\n    constructor() {\r\n        this.headers = {};\r\n        this.setHeaders();\r\n    }\r\n\r\n    setHeaders() {\r\n        const headersDOM = document.querySelectorAll(\"h1, h2, h3, h4, h5, h6\");\r\n        headersDOM.forEach((item) => {\r\n            if (!item.innerHTML) {\r\n                return;\r\n            }\r\n            if (!this.headers[item.tagName]) {\r\n                this.headers[item.tagName] = [];\r\n            }\r\n            this.headers[item.tagName].push(item.innerHTML.replace(/<(.|\\n)*?>/g, '').trim());\r\n        });\r\n    }\r\n\r\n    getPageValue() {\r\n        return {\r\n            headers: this.headers\r\n        }\r\n    }\r\n}\n\n//# sourceURL=webpack://convesing/./src/PageFinder.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _TagFinder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TagFinder */ \"./src/TagFinder.js\");\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api */ \"./src/api.js\");\n\r\n\r\n\r\nBX.ready(() => {\r\n    const tagFinder = new _TagFinder__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n    console.log('pageParams', pageParams);\r\n    (0,_api__WEBPACK_IMPORTED_MODULE_1__.visitPage)({\r\n        data: {\r\n            params: pageParams\r\n        }\r\n    })\r\n        .then((response) => {\r\n            console.log(response);\r\n        })\r\n        .catch((error) => {\r\n            console.log(error);\r\n        });\r\n});\n\n//# sourceURL=webpack://convesing/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _PageFinder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PageFinder */ \"./src/PageFinder.js\");\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api */ \"./src/api.js\");\n\r\n\r\n\r\nBX.ready(() => {\r\n    const pageFinder = new _PageFinder__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n    const finderData = pageFinder.getPageValue();\r\n    let finalPageParams = pageParams;\r\n    finalPageParams.params = {\r\n        ...finalPageParams.params,\r\n        ...finderData\r\n    }\r\n    console.log('finalPageParams', finalPageParams);\r\n    (0,_api__WEBPACK_IMPORTED_MODULE_1__.visitPage)({\r\n        data: {\r\n            params: finalPageParams\r\n        }\r\n    })\r\n        .then((response) => {\r\n            console.log(response);\r\n        })\r\n        .catch((error) => {\r\n            console.log(error);\r\n        });\r\n});\n\n//# sourceURL=webpack://convesing/./src/index.js?");
 
 /***/ })
 
