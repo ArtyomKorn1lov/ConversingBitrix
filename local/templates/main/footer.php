@@ -253,11 +253,12 @@ $pageParams = [
 $arDataAttr = Data::getDataAttrConversing();
 $arJSParams = Bitrix\Main\Web\Json::encode($pageParams);
 $arJsDataAttr = Bitrix\Main\Web\Json::encode($arDataAttr);
+$checkUserAdmin = empty($USER->IsAdmin()) ? "N" : "Y";
 ?>
 <script>
     const pageParams = <?=$arJSParams?>;
     const conversingDataAttr = <?=$arJsDataAttr?>;
-    const isUserAdmin = <?=$USER->IsAdmin()?>
+    let isUserAdmin = '<?=$checkUserAdmin?>';
 </script>
 
 </body>
