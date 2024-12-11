@@ -248,10 +248,13 @@ $pageParams = [
     "params" => Data::getPagesMetaData($APPLICATION),
     "curPage" => $APPLICATION->GetCurPage(false)
 ];
+$arDataAttr = Data::getDataAttrConversing();
 $arJSParams = Bitrix\Main\Web\Json::encode($pageParams);
+$arJsDataAttr = Bitrix\Main\Web\Json::encode($arDataAttr);
 ?>
 <script>
     const pageParams = <?=$arJSParams?>;
+    const conversingDataAttr = <?=$arJsDataAttr?>;
 </script>
 
 </body>

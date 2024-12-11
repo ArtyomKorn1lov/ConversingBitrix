@@ -41,4 +41,9 @@ class Data
         }
         return $arMeta;
     }
+
+    public static function getDataAttrConversing(): array
+    {
+        return Constants::DATA_ATTR_ACTIONS;
+    }
 }

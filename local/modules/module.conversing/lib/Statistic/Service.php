@@ -19,10 +19,13 @@ class Service
     private int $visitorId;
     private array $visitorData = [];
 
-    public function __construct(array $params = null, string|bool $curPage = false)
+    public function __construct(array $params = null, string|bool $curPage = false, bool $isAddAction = false)
     {
         try {
             $this->setVisitorUnicId();
+            if ($isAddAction) {
+                return;
+            }
             if ($this->checkTestingPage($curPage)) {
                 $visitorData = $this->getVisitorData();
                 $this->setVisitorsParams($visitorData);
@@ -164,5 +167,25 @@ class Service
         if (file_exists($visitorPageParamsPath)) {
             unlink($visitorPageParamsPath);
         }
+    }
+
+    /**
+     * @throws SystemException
+     */
+    public function addVisitorAction(string $actionCode): void
+    {
+        if (empty($actionCode)) {
+            return;
+        }
+        $filePath = $_SERVER["DOCUMENT_ROOT"] . Constants::CONVERSING_LOGS_PATH ."{$this->visitorId}-visitor.json";
+        if (!file_exists($filePath)) {
+            return;
+        }
+        $fileData = file_get_contents($filePath);
+        $curFileData = Json::decode($fileData);
+        $lastKey = array_key_last($curFileData);
+        $curFileData[$lastKey]["actions"][] = $actionCode;
+        $fieldsJsonData = Json::encode($curFileData);
+        file_put_contents($filePath, $fieldsJsonData);
     }
 }

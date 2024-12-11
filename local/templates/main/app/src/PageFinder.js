@@ -1,10 +1,14 @@
+import {emitVisitor} from "./api";
+
 export default class PageFinder {
-    constructor() {
+    constructor(isInitPage = false) {
         this.headers = {};
         this.picturesData = [];
         this.actions = {};
-        this.setHeaders();
-        this.setImgParams();
+        if (!!isInitPage) {
+            this.setHeaders();
+            this.setImgParams();
+        }
     }
 
     setHeaders() {
@@ -35,7 +39,31 @@ export default class PageFinder {
     getPageValue() {
         return {
             headers: this.headers,
-            pictures: this.picturesData
+            pictures: this.picturesData,
+            actions: this.actions
+        }
+    }
+
+    addHandlersActions(dataAttrObject = null) {
+        if (!dataAttrObject) {
+            return;
+        }
+
+        for (let key in dataAttrObject) {
+            $('[' + dataAttrObject[key] + ']').click(() => {
+                console.log(dataAttrObject[key]);
+                emitVisitor({
+                    data: {
+                        code: key
+                    }
+                })
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
         }
     }
 }

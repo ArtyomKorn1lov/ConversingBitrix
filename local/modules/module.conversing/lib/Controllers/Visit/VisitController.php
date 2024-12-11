@@ -14,6 +14,9 @@ class VisitController extends Controller
         return [
             "visitPage" => [
                 "prefilters" => []
+            ],
+            "emitVisitor" => [
+                "prefilters" => []
             ]
         ];
     }
@@ -25,6 +28,17 @@ class VisitController extends Controller
             return null;
         };
         new Service($params["params"], $params["curPage"]);
+        return "SUCCESS";
+    }
+
+    public function emitVisitorAction(string $code):? string
+    {
+        if (empty($code)) {
+            $this->addError(new Error('Неверные входные параметры'));
+            return null;
+        };
+        $obService = new Service(null, false, true);
+        $obService->addVisitorAction($code);
         return "SUCCESS";
     }
 }

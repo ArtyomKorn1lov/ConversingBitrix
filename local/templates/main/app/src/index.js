@@ -2,7 +2,7 @@ import PageFinder from "./PageFinder";
 import {visitPage} from "./api";
 
 BX.ready(() => {
-    const pageFinder = new PageFinder();
+    const pageFinder = new PageFinder(true);
     const finderData = pageFinder.getPageValue();
     let finalPageParams = pageParams;
     finalPageParams.params = {
@@ -21,4 +21,6 @@ BX.ready(() => {
         .catch((error) => {
             console.log(error);
         });
+
+    pageFinder.addHandlersActions(conversingDataAttr);
 });

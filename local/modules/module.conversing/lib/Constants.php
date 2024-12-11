@@ -17,6 +17,14 @@ class Constants
         "second-name" => 'single',
         "type" => 'single'
     ];
+
+    public const DATA_ATTR_ACTIONS = [
+        "isAddBasket" => 'data-conversing="add-basket"',
+        'isMakeOrder' => 'data-conversing="make-order"',
+        'isClickSocial' => 'data-conversing="social-link"',
+        'isMailSend' => 'data-conversing="mail-send"',
+        'isSendQuestion' => 'data-conversing="send-question"'
+    ];
 }
 
 /*
