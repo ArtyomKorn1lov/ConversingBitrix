@@ -2,6 +2,7 @@ export default class PageFinder {
     constructor() {
         this.headers = {};
         this.picturesData = [];
+        this.actions = {};
         this.setHeaders();
         this.setImgParams();
     }

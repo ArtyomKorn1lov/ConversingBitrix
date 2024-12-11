@@ -18,3 +18,12 @@ class Constants
         "type" => 'single'
     ];
 }
+
+/*
+ * Дата атрибуты для фиксации действий пользователя
+data-conversing="add-basket"
+data-conversing="make-order"
+data-conversing="social-link"
+data-conversing="mail-send"
+data-conversing="send-question"
+*/
