@@ -27,8 +27,12 @@ class VisitController extends Controller
             $this->addError(new Error('Неверные входные параметры'));
             return null;
         };
-        new Service($params["params"], $params["curPage"]);
-        return "SUCCESS";
+        $obService = new Service($params["params"], $params["curPage"]);
+        $flag = $obService->getStatePortrait();
+        if ($flag) {
+            return "Поведенческий портрет пользователя сформирован";
+        }
+        return "Информация о странице добавлена";
     }
 
     public function emitVisitorAction(string $code):? string
@@ -39,6 +43,6 @@ class VisitController extends Controller
         };
         $obService = new Service(null, false, true);
         $obService->addVisitorAction($code);
-        return "SUCCESS";
+        return "Действие пользователя добавлено в историю";
     }
 }

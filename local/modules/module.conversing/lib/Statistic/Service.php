@@ -18,6 +18,7 @@ class Service
     private array $fields = [];
     private int $visitorId;
     private array $visitorData = [];
+    private bool $portraitIsComplete = false;
 
     public function __construct(array $params = null, string|bool $curPage = false, bool $isAddAction = false)
     {
@@ -30,6 +31,7 @@ class Service
                 $visitorData = $this->getVisitorData();
                 $this->setVisitorsParams($visitorData);
                 $this->saveVisitorPortrait();
+                $this->portraitIsComplete = true;
                 return;
             }
             $this->addStatisticFields($params);
@@ -187,5 +189,9 @@ class Service
         $curFileData[$lastKey]["actions"][] = $actionCode;
         $fieldsJsonData = Json::encode($curFileData);
         file_put_contents($filePath, $fieldsJsonData);
+    }
+
+    public function getStatePortrait(): bool {
+        return $this->portraitIsComplete;
     }
 }

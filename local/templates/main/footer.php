@@ -242,6 +242,8 @@
 </script>
 
 <?php
+global $USER;
+Bitrix\Main\UI\Extension::load("ui.dialogs.messagebox");
 Bitrix\Main\Loader::includeModule('module.conversing');
 use Conversing\Helpers\Data;
 $pageParams = [
@@ -255,6 +257,7 @@ $arJsDataAttr = Bitrix\Main\Web\Json::encode($arDataAttr);
 <script>
     const pageParams = <?=$arJSParams?>;
     const conversingDataAttr = <?=$arJsDataAttr?>;
+    const isUserAdmin = <?=$USER->IsAdmin()?>
 </script>
 
 </body>

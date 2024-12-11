@@ -59,9 +59,15 @@ export default class PageFinder {
                 })
                     .then((response) => {
                         console.log(response);
+                        !!isUserAdmin && BX.UI.Dialogs.MessageBox.alert(
+                            response.data
+                        );
                     })
                     .catch((error) => {
                         console.log(error);
+                        !!isUserAdmin && BX.UI.Dialogs.MessageBox.alert(
+                            error.data
+                        );
                     });
             });
         }
