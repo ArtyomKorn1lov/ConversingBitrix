@@ -1,5 +1,7 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Задайте вопрос");
+$APPLICATION->SetPageProperty("application-name","Контакты");
+$APPLICATION->SetPageProperty("type","contacts");
 ?>
 
 	<p>
